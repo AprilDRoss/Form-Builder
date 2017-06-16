@@ -83,18 +83,16 @@ let formData = [
 // Hints -----------
 
 // Accessing specific properties.
-formData[0].label // this will give us "First Name"
+// this will give us "First Name"
 // as you can see we access the first element in the array
 // with [0] and then grab the property "label" using the "." character
 
 // Looping
 // Sample of how to loop over the formData
-for(let i=0; i<formData.length; i++){
 
   // Check your dev tools console for what the items in formData have
-  console.log(formData[i])
+  // console.log(formData[i])
 
-}
 
 
 // -------- Your Code Goes Here --------
@@ -103,19 +101,15 @@ for (var i = 0; i < formData.length; i++) {
   let obj = formData[i];
   let text;
   if (obj.options.length === 0) {
-    text = '<input class="formdata" type="' + obj.type + '" id="' + obj.id + '" placeholder="' + obj.label +'">'
+    form.insertAdjacentHTML('beforeend','<input type="' + obj.type + '" id="' + obj.id + '" placeholder="' + obj.label +'"><br>');
   } else {
-    text = '<input class="formdata" options="' + obj.options[0].label +'" type="' + obj.type + '" id="' + obj.id + '" placeholder="' + obj.label +'">'
+    let lang = '<select>';
+    for (var j = 0; j < obj.options.length; j++){
+      textnode = obj.options[j];
+      lang += '<option value="' + textnode.value + '" label="' + textnode.label + '">'
+     }
+     lang += '</select>';
+     form.insertAdjacentHTML('beforeend',lang);
   }
-  form.insertAdjacentHTML("beforeend", text);
-}
-//get options for drop-down menu
 
-// var x = document.querySelector("#user-language");
-// console.log(x);
-// var txt = "All options: ";
-// var j;
-// for (j = 0; j < x.length; j++) {
-//     txt = txt + "\n" + x.options[j].text;
-//     console.log(txt);
-// }
+}
